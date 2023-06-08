@@ -1,0 +1,69 @@
+@use "sass:color";
+
+:root {
+  --bg-base: #fff;
+  --bg-primary: lighten(theme('colors.nord6'), 4.5%);
+  --bg-secondary: lighten(theme('colors.nord5'), 6%);
+  --bg-tertiary-secondary: lighten(theme('colors.nord4'), 8%);
+  --font-base: theme('colors.nord3');
+  --code-bg: theme('colors.nord6');
+  --blockquote-color: #ABB9CF;
+}
+
+.dark {
+  --bg-base: theme('colors.nord0');
+  --bg-primary: theme('colors.nord1');
+  --bg-secondary: color.adjust(theme('colors.nord0'), $lightness: -2.5%);
+  --bg-tertiary-secondary: lighten(theme('colors.nord0'), 4.5%);
+  --font-base: theme('colors.nord6');
+  --code-bg: theme('colors.nord1');
+  --blockquote-color: #7B88A1;
+}
+
+html, body, #__nuxt {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--font-base);
+  transition: background-color .4s ease-in-out;
+}
+
+.prose-nord {
+  --un-prose-headings: var(--font-base);
+  --un-prose-invert-headings: var(--font-base);
+  --un-prose-links: theme('colors.nord8');
+  --un-prose-invert-links: theme('colors.nord10');
+  --un-prose-borders: #88c0d0;
+  --un-prose-invert-borders: #5e81ac;
+  --un-prose-body: inherit;
+  --un-prose-invert-body: inherit;
+  --un-prose-lists: theme('colors.nord6');
+  --un-prose-invert-lists: theme('colors.nord3');
+  --un-prose-code: inherit;
+  --un-prose-invert-code: inherit;
+  --un-prose-captions: #8C9FAA;
+  --un-prose-invert-captions: #C8CFD9;
+  --un-prose-hr: #F2F4F8;
+  --un-prose-invert-hr: #242933;
+  --un-prose-bg-soft: var(--font-base);
+  --un-prose-invert-bg-soft: var(--font-base);
+
+  --un-prose-font-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.milkdown {
+  @apply px-2 py-4
+}
+
+.milkdown img {
+  @apply max-w-full my-0 inline-block;
+}
+
+.milkdown .emoji {
+  @apply h-4 w-4;
+}
