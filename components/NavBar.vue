@@ -11,7 +11,7 @@ const { logout } = useAuth()
     <div ml-auto mr-5 flex justify-between gap-4>
       <NuxtLink i-carbon-pen nav-btn to="/" />
       <NuxtLink i-carbon-user-simulation nav-btn to="/" />
-      <NuxtLink v-if="currentUser?.user" i-carbon-logout nav-btn to="/" @click="logout" />
+      <NuxtLink v-if="currentUser" i-carbon-logout nav-btn to="/" @click="logout" />
       <DarkToggle />
     </div>
   </nav>

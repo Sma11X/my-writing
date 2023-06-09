@@ -13,7 +13,7 @@ export function useAuth() {
     username: string,
     password: string,
   ) => {
-    const data = await $fetch<UserWithoutPwd>('/api/auth/login', {
+    const data = await $fetch<{ user: UserWithoutPwd }>('/api/auth/login', {
       method: 'POST',
       body: {
         username,
@@ -22,7 +22,7 @@ export function useAuth() {
     })
 
     await navigateTo('/')
-    setUser(data)
+    setUser(data.user)
     return authUser
   }
 
@@ -36,11 +36,11 @@ export function useAuth() {
 
   const me = async () => {
     if (!authUser.value) {
-      const data = await useAuthFetch<UserWithoutPwd>('/api/auth/me', {
+      const data = await useAuthFetch<{ user: UserWithoutPwd }>('/api/auth/me', {
         method: 'GET',
       })
 
-      setUser(data)
+      setUser(data.user)
     }
 
     return authUser

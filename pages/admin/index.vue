@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const isLogin = useAuthUser()
+if (isLogin.value?.username)
+  navigateTo({ name: 'index' })
 const { login } = useAuth()
 const formData = reactive({
   username: '',
