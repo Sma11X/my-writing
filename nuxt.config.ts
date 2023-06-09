@@ -1,6 +1,12 @@
 import { appDescription } from './constants/index'
 
 export default defineNuxtConfig({
+  runtimeConfig: {
+    cookieName: process.env.COOKIE_NAME || '__session',
+    cookieSecret: process.env.COOKIE_SECRET || 'secret',
+    cookieExpires: Number.parseInt(process.env.COOKIE_REMEMBER_ME_EXPIRES || (60 * 60 * 24 * 1000).toString(), 10), // 1 day
+  },
+
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',

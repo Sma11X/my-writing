@@ -1,3 +1,6 @@
+<script setup lang="ts">
+</script>
+
 <template>
   <header fixed inset-x-0 top-0 block h-16 w-full>
     <NavBar />
