@@ -19,6 +19,7 @@
     "@milkdown/plugin-emoji": "^7.2.3",
     "@milkdown/plugin-history": "^7.2.3",
     "@milkdown/plugin-indent": "^7.2.3",
+    "@milkdown/plugin-listener": "^7.2.3",
     "@milkdown/plugin-prism": "^7.2.3",
     "@milkdown/preset-commonmark": "^7.2.3",
     "@milkdown/preset-gfm": "^7.2.3",

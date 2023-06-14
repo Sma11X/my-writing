@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Milkdown, useEditor } from '@milkdown/vue'
-import { Editor, defaultValueCtx, rootCtx } from '@milkdown/core'
+import { Editor, defaultValueCtx, editorViewCtx, rootCtx, serializerCtx } from '@milkdown/core'
 import { commonmark } from '@milkdown/preset-commonmark'
 import { gfm } from '@milkdown/preset-gfm'
 import { history } from '@milkdown/plugin-history'
@@ -24,8 +24,10 @@ const markdown
 This is a demo for using Milkdown with **Nuxt**.`
 
 const pluginViewFactory = usePluginViewFactory()
+const title = ref('')
+const { createWriting } = useWriting()
 
-useEditor((root) => {
+const { get } = useEditor((root) => {
   return Editor.make()
     .config(milkdownTheme)
     .config((ctx) => {
@@ -53,10 +55,35 @@ useEditor((root) => {
     .use(block)
     .use(prism)
 })
+async function saveMarkdown() {
+  const content = get()?.action((ctx) => {
+    const editorView = ctx.get(editorViewCtx)
+    const serializer = ctx.get(serializerCtx)
+    return serializer(editorView.state.doc)
+  })
+
+  await createWriting({
+    title: title.value,
+    content: content || '',
+  })
+}
 </script>
 
 <template>
+  <div flex="~ items-center justify-center">
+    <input
+      v-model="title"
+      placeholder="Title" required
+      type="text" autocomplete="off"
+      p="x-4 y-2" m="t-5" w="250px"
+      text="left" bg="transparent"
+      border="~ rounded gray-300 dark:gray-700"
+      outline="none active:none"
+    >
+  </div>
+
   <Milkdown class="prose-nord prose dark:prose-invert" mx-auto />
+  <div i-carbon-document-add mx-auto @click="saveMarkdown" />
 </template>
 
 <style scoped lang="scss">

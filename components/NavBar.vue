@@ -9,8 +9,9 @@ const { logout } = useAuth()
       <NuxtLink i-carbon-campsite to="/" />
     </div>
     <div ml-auto mr-5 flex justify-between gap-4>
-      <NuxtLink i-carbon-pen nav-btn to="/" />
+      <NuxtLink i-carbon-pen nav-btn to="/writings" />
       <NuxtLink i-carbon-user-simulation nav-btn to="/" />
+      <NuxtLink v-if="currentUser" i-carbon-data-enrichment-add nav-btn to="/create" />
       <NuxtLink v-if="currentUser" i-carbon-logout nav-btn to="/" @click="logout" />
       <DarkToggle />
     </div>

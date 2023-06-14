@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 dependencies:
   '@milkdown/core':
@@ -20,6 +24,9 @@ dependencies:
     specifier: ^7.2.3
     version: 7.2.3(@milkdown/core@7.2.3)(@milkdown/ctx@7.2.3)(@milkdown/prose@7.2.3)(@milkdown/transformer@7.2.3)
   '@milkdown/plugin-indent':
+    specifier: ^7.2.3
+    version: 7.2.3(@milkdown/core@7.2.3)(@milkdown/ctx@7.2.3)(@milkdown/prose@7.2.3)(@milkdown/transformer@7.2.3)
+  '@milkdown/plugin-listener':
     specifier: ^7.2.3
     version: 7.2.3(@milkdown/core@7.2.3)(@milkdown/ctx@7.2.3)(@milkdown/prose@7.2.3)(@milkdown/transformer@7.2.3)
   '@milkdown/plugin-prism':
@@ -1257,6 +1264,24 @@ packages:
       '@milkdown/ctx': 7.2.3
       '@milkdown/prose': 7.2.3
       '@milkdown/utils': 7.2.3(@milkdown/core@7.2.3)(@milkdown/ctx@7.2.3)(@milkdown/prose@7.2.3)(@milkdown/transformer@7.2.3)
+      tslib: 2.5.1
+    transitivePeerDependencies:
+      - '@milkdown/transformer'
+    dev: false
+
+  /@milkdown/plugin-listener@7.2.3(@milkdown/core@7.2.3)(@milkdown/ctx@7.2.3)(@milkdown/prose@7.2.3)(@milkdown/transformer@7.2.3):
+    resolution: {integrity: sha512-w7msmq8nPpXLaViV8b4VoZb4F1KTcpT1YIGOIrLBJFhSqQt7uqQ6F7jbwiNrwbsmtT7pXkVm6Vr8qJDZdtAo1A==}
+    peerDependencies:
+      '@milkdown/core': ^7.2.0
+      '@milkdown/ctx': ^7.2.0
+      '@milkdown/prose': ^7.2.0
+    dependencies:
+      '@milkdown/core': 7.2.3(@milkdown/ctx@7.2.3)(@milkdown/prose@7.2.3)(@milkdown/transformer@7.2.3)
+      '@milkdown/ctx': 7.2.3
+      '@milkdown/prose': 7.2.3
+      '@milkdown/utils': 7.2.3(@milkdown/core@7.2.3)(@milkdown/ctx@7.2.3)(@milkdown/prose@7.2.3)(@milkdown/transformer@7.2.3)
+      '@types/lodash.debounce': 4.0.7
+      lodash.debounce: 4.0.8
       tslib: 2.5.1
     transitivePeerDependencies:
       - '@milkdown/transformer'
