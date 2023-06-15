@@ -6,3 +6,7 @@ export async function createWriting(writingData: writing) {
     data: writingData,
   })
 }
+
+export async function getWritingsByPage(prismaQuery: any) {
+  return await prisma.writing.findMany(prismaQuery)
+}

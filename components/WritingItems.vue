@@ -1,10 +1,20 @@
+<script setup lang="ts">
+import type { Writing } from '@prisma/client'
+
+const { item } = defineProps<{
+  item: Writing
+}>()
+</script>
+
 <template>
   <article w-full flex flex-col items-center justify-center>
     <header>
       <h2 flex items-center justify-center>
-        title
+        {{ item.title }}
       </h2>
-      <small flex items-center justify-center>time</small>
+      <small flex items-center justify-center>
+        {{ useDateFormat(item.createdAt, 'YYYY-MM-DD').value }}
+      </small>
     </header>
   </article>
 </template>

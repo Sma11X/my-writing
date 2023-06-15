@@ -10,7 +10,15 @@ export default () => {
     return data
   }
 
+  const getWritings = async (page: number | string) => {
+    const data = await fetch(`/api/writings/${Number(page)}`, {
+      method: 'GET',
+    }).then(res => res.json())
+    return data
+  }
+
   return {
     createWriting,
+    getWritings,
   }
 }
