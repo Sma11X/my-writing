@@ -9,7 +9,7 @@ definePageMeta({
 
 <template>
   <ClientOnly>
-    <div>
+    <div flex-1 flex-col>
       <MilkdownProvider>
         <ProsemirrorAdapterProvider>
           <MilkdownEditor />

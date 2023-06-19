@@ -1,3 +1,4 @@
+import type { Writing } from '@prisma/client'
 import type { writing } from '~/types/IWriting'
 
 export default () => {
@@ -17,8 +18,16 @@ export default () => {
     return data
   }
 
+  const getWritingById = async (id: string) => {
+    const { data } = await useFetch<Writing>(`/api/writing/${id}`, {
+      method: 'GET',
+    })
+    return data
+  }
+
   return {
     createWriting,
     getWritings,
+    getWritingById,
   }
 }

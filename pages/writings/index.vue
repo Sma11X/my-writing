@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: 'writings',
+  middleware: 'default-page',
 })
 </script>
 

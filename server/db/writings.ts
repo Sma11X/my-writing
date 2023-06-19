@@ -10,3 +10,11 @@ export async function createWriting(writingData: writing) {
 export async function getWritingsByPage(prismaQuery: any) {
   return await prisma.writing.findMany(prismaQuery)
 }
+
+export async function getWritingById(id: string) {
+  return await prisma.writing.findUnique({
+    where: {
+      id,
+    },
+  })
+}
