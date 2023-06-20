@@ -18,3 +18,29 @@ export async function getWritingById(id: string) {
     },
   })
 }
+
+export async function publishWriting(id: string) {
+  return await prisma.writing.update({
+    where: {
+      id,
+    },
+    data: {
+      published: true,
+    },
+  }).catch((error) => {
+    // eslint-disable-next-line no-console
+    console.log(error)
+  })
+}
+
+export async function updateWriting(id: string, writingData: writing) {
+  return await prisma.writing.update({
+    where: {
+      id,
+    },
+    data: writingData,
+  }).catch((error) => {
+    // eslint-disable-next-line no-console
+    console.log(error)
+  })
+}
