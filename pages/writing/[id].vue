@@ -7,6 +7,7 @@ const router = useRouter()
 const state = useStore()
 const markdown = ref('a')
 const { getWritingById } = useWriting()
+const isLogin = useAuthUser()
 
 const res = await getWritingById(route.params.id as string)
 if (res.value?.content)
@@ -29,7 +30,8 @@ onMounted(() => {
   <div>
     <MilkdownProvider>
       <ProsemirrorAdapterProvider>
-        <ReadOnlyEditor :markdown="markdown" />
+        <MilkdownEditor v-if="isLogin" :details="res!" />
+        <ReadOnlyEditor v-else :markdown="markdown" />
       </ProsemirrorAdapterProvider>
     </MilkdownProvider>
   </div>

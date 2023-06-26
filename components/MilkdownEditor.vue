@@ -14,25 +14,23 @@ import 'prism-themes/themes/prism-nord.css'
 import css from 'refractor/lang/css'
 import javascript from 'refractor/lang/javascript'
 import typescript from 'refractor/lang/typescript'
+import type { Writing } from '@prisma/client'
 import Block from './Block.vue'
 
-const markdown
-= `# Milkdown Nuxt Commonmark
-
-> You're scared of a world where you're needed.
-
-This is a demo for using Milkdown with **Nuxt**.`
+const { details } = defineProps<{
+  details: Writing
+}>()
 
 const pluginViewFactory = usePluginViewFactory()
-const title = ref('')
-const { createWriting } = useWriting()
+const title = toRef(details, 'title') ?? ref('')
+const { createWriting, updateWriting } = useWriting()
 
 const { get } = useEditor((root) => {
   return Editor.make()
     .config(milkdownTheme)
     .config((ctx) => {
       ctx.set(rootCtx, root)
-      ctx.set(defaultValueCtx, markdown)
+      ctx.set(defaultValueCtx, details.content ?? '')
       ctx.set(block.key, {
         view: pluginViewFactory({
           component: Block,
@@ -55,6 +53,7 @@ const { get } = useEditor((root) => {
     .use(block)
     .use(prism)
 })
+
 async function saveMarkdown() {
   const content = get()?.action((ctx) => {
     const editorView = ctx.get(editorViewCtx)
@@ -62,10 +61,18 @@ async function saveMarkdown() {
     return serializer(editorView.state.doc)
   })
 
-  await createWriting({
-    title: title.value,
-    content: content || '',
-  })
+  if (details?.id) {
+    await updateWriting(details.id, {
+      title: title.value,
+      content: content || '',
+    })
+  }
+  else {
+    await createWriting({
+      title: title.value,
+      content: content || '',
+    })
+  }
 }
 </script>
 
