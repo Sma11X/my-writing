@@ -13,6 +13,10 @@ const res = await getWritingById(route.params.id as string)
 if (res.value?.content)
   markdown.value = res.value.content
 
+function goBack() {
+  router.go(-1)
+}
+
 onMounted(() => {
   // if (router.options.history.state.back) {
   //   const url = (router.options.history.state.back).split('/')
@@ -35,4 +39,5 @@ onMounted(() => {
       </ProsemirrorAdapterProvider>
     </MilkdownProvider>
   </div>
+  <div class="i-carbon-direction-loop-left" mx-auto cursor-pointer @click="goBack"></div>
 </template>

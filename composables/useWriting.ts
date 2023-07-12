@@ -25,9 +25,10 @@ export default () => {
     return data
   }
 
-  const publishWriting = async (id: string) => {
+  const publishWriting = async (id: string, published: boolean) => {
     const data = await useAuthFetch<void | Writing>(`/api/publish/${id}`, {
       method: 'PUT',
+      published,
     })
     return data
   }

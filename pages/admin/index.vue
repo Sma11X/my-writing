@@ -20,7 +20,7 @@ async function handleLogin() {
 
 <template>
   <ClientOnly>
-    <div flex-col items-center justify-center>
+    <div mx-auto flex flex-col items-center justify-center>
       <form class="mt-8 space-y-4">
         <div>
           <input

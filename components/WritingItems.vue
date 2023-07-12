@@ -4,28 +4,26 @@ import type { Writing } from '@prisma/client'
 const { item } = defineProps<{
   item: Writing
 }>()
-function goToWriting() {
-  navigateTo(`/writing/${item.id}`)
-}
 </script>
 
 <template>
-  <article w-full flex flex-col items-center justify-center>
-    <header>
-      <h2 flex items-center justify-center @click="goToWriting()">
+  <NuxtLink :to="`/writing/${item.id}`" relative min-h-12 w-full flex flex-col justify-end p-4 text-xl shadow>
+    <article>
+      <header>
         {{ item.title }}
-      </h2>
-      <small flex items-center justify-center>
-        {{ useDateFormat(item.createdAt, 'YYYY-MM-DD').value }}
-      </small>
-    </header>
-  </article>
+
+        <dl mt-1 block flex-row flex-wrap text-xs leading-normal uppercase md:flex>
+          <dt float-left mr-2 md:float-none>
+            发布于
+          </dt>
+          <dd mr-4 font-mono>
+            {{ useDateFormat(item.createdAt, 'YYYY-MM-DD').value }}
+          </dd>
+        </dl>
+      </header>
+    </article>
+  </NuxtLink>
 </template>
 
 <style scoped>
-h2 {
-  font-size: 1.75em;
-  margin: 1.5em 0 .5em;
-  font-weight: 900;
-}
 </style>

@@ -3,7 +3,7 @@ import { updateWriting } from '~/server/db/writings'
 export default defineEventHandler(async (event) => {
   const id = event.context.params?.id
   const body = await readBody(event)
-  const { title, content } = body
+  const { title, content, published } = body
 
   if (!id) {
     throw createError({
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const writingData = {
-    title, content,
+    title, content, published
   }
   const writing = await updateWriting(id, writingData)
   return writing

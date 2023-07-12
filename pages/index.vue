@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>
+  <div flex items-center justify-center>
     default page
   </div>
 </template>

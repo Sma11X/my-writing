@@ -4,7 +4,7 @@ const { logout } = useAuth()
 </script>
 
 <template>
-  <nav text="xl" h-full flex items-center px-6>
+  <nav flex flex-row items-center justify-between p-1 md:p-2>
     <div h-12 w-12 flex items-center justify-center>
       <NuxtLink i-carbon-campsite to="/" />
     </div>

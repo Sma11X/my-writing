@@ -2,10 +2,22 @@
 </script>
 
 <template>
-  <header fixed inset-x-0 top-0 block h-16 w-full>
+  <div min-h-screen flex flex-col overflow-x-hidden>
     <NavBar />
-  </header>
-  <main flex="~" justify-center px-20 pt-16 align-start>
-    <slot />
-  </main>
+
+    <main mx-auto max-w-xl w-full flex-grow p-4>
+      <slot role="main" />
+    </main>
+  </div>
 </template>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+</style>

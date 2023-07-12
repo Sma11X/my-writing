@@ -41,6 +41,9 @@ export default defineConfig({
         '.prose :where(ul > li):not(:where(.not-prose,.not-prose *))::marker': {
           color: 'var(--font-base)',
         },
+        '.prose :where(details):not(:where(.not-prose,.not-prose *))': {
+          background: 'transparent',
+        },
       },
     }),
     presetWebFonts({

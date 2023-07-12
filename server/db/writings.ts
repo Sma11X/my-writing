@@ -19,13 +19,13 @@ export async function getWritingById(id: string) {
   })
 }
 
-export async function publishWriting(id: string) {
+export async function publishWriting(id: string, published: boolean) {
   return await prisma.writing.update({
     where: {
       id,
     },
     data: {
-      published: true,
+      published: published,
     },
   }).catch((error) => {
     // eslint-disable-next-line no-console

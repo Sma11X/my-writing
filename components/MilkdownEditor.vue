@@ -17,12 +17,15 @@ import typescript from 'refractor/lang/typescript'
 import type { Writing } from '@prisma/client'
 import Block from './Block.vue'
 
+// import detailsPlugin from '~/composables/details'
+
 const { details } = defineProps<{
-  details: Writing
+  details?: Writing
 }>()
 
 const pluginViewFactory = usePluginViewFactory()
-const title = toRef(details, 'title') ?? ref('')
+const title = toRef(details?.title) ?? ref('')
+const isPublished = toRef(details?.published) ?? ref(false)
 const { createWriting, updateWriting } = useWriting()
 
 const { get } = useEditor((root) => {
@@ -30,7 +33,7 @@ const { get } = useEditor((root) => {
     .config(milkdownTheme)
     .config((ctx) => {
       ctx.set(rootCtx, root)
-      ctx.set(defaultValueCtx, details.content ?? '')
+      ctx.set(defaultValueCtx, details?.content ?? '')
       ctx.set(block.key, {
         view: pluginViewFactory({
           component: Block,
@@ -52,6 +55,7 @@ const { get } = useEditor((root) => {
     .use(diagram)
     .use(block)
     .use(prism)
+    // .use(detailsPlugin)
 })
 
 async function saveMarkdown() {
@@ -63,26 +67,36 @@ async function saveMarkdown() {
 
   if (details?.id) {
     await updateWriting(details.id, {
-      title: title.value,
+      title: title.value!,
       content: content || '',
+      published: isPublished.value
     })
   }
   else {
     await createWriting({
-      title: title.value,
+      title: title.value!,
       content: content || '',
     })
   }
+
+  await navigateTo('/writings/1')
+}
+
+function togglePublished() {
+  isPublished.value = !isPublished.value
 }
 </script>
 
 <template>
   <div flex="~ items-center justify-center">
+    <button mt-5 mr-5 @click="togglePublished">
+      <div :class="isPublished ? 'i-carbon-unlocked' : 'i-carbon-locked'"></div>
+    </button>
     <input
       v-model="title"
       placeholder="Title" required
       type="text" autocomplete="off"
-      p="x-4 y-2" m="t-5" w="250px"
+      p="x-4 y-2" m="t-5" w="100%"
       text="left" bg="transparent"
       border="~ rounded gray-300 dark:gray-700"
       outline="none active:none"

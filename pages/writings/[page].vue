@@ -17,6 +17,7 @@ if (!state.value.writings[page.value])
   await fetchWritings(page.value)
 
 const writings = state.value.writings[page.value]
+const loading = computed(() => writings.length === 0)
 
 function pageChanged(to: number) {
   if (to <= 0)
@@ -29,10 +30,19 @@ watch(page, to => pageChanged(to))
 </script>
 
 <template>
-  <div h-full w-full flex flex-col>
-    <div v-for="item in writings" :key="item.id">
-      <WritingItems :item="item" />
-    </div>
+  <div w-full flex flex-col>
+    <header my-1 leading-none>
+      <h1 text-2xl>
+        Writings
+      </h1>
+    </header>
+    <LoadSpinner v-if="loading" />
+    <template v-else>
+      <section flex flex-row flex-wrap gap-4>
+        <WritingItems v-for="item in writings" :key="item.id" :item="item" />
+      </section>
+    </template>
+
     <div mt-4 flex justify-between>
       <NuxtLink v-if="page > 1" :to="`/writings/${page - 1}`" i-carbon-arrow-left />
       <span v-else i-carbon-arrow-left opacity-50 />
@@ -40,3 +50,6 @@ watch(page, to => pageChanged(to))
     </div>
   </div>
 </template>
+
+<style scoped>
+</style>
