@@ -17,8 +17,6 @@ import typescript from 'refractor/lang/typescript'
 import type { Writing } from '@prisma/client'
 import Block from './Block.vue'
 
-// import detailsPlugin from '~/composables/details'
-
 const { details } = defineProps<{
   details?: Writing
 }>()
@@ -55,7 +53,6 @@ const { get } = useEditor((root) => {
     .use(diagram)
     .use(block)
     .use(prism)
-    // .use(detailsPlugin)
 })
 
 async function saveMarkdown() {
@@ -69,7 +66,7 @@ async function saveMarkdown() {
     await updateWriting(details.id, {
       title: title.value!,
       content: content || '',
-      published: isPublished.value
+      published: isPublished.value,
     })
   }
   else {
@@ -89,8 +86,8 @@ function togglePublished() {
 
 <template>
   <div flex="~ items-center justify-center">
-    <button mt-5 mr-5 @click="togglePublished">
-      <div :class="isPublished ? 'i-carbon-unlocked' : 'i-carbon-locked'"></div>
+    <button mr-5 mt-5 @click="togglePublished">
+      <div :class="isPublished ? 'i-carbon-unlocked' : 'i-carbon-locked'" />
     </button>
     <input
       v-model="title"
