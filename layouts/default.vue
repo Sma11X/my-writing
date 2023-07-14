@@ -5,7 +5,7 @@
   <div min-h-screen flex flex-col overflow-x-hidden>
     <NavBar />
 
-    <main mx-auto max-w-xl w-full flex-grow p-4>
+    <main mx-auto max-w-2xl w-full flex-grow p-4>
       <slot role="main" />
     </main>
   </div>
