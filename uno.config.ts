@@ -38,12 +38,6 @@ export default defineConfig({
         ':not(pre) > code::before,:not(pre) > code::after': {
           content: '" "',
         },
-        '.prose :where(ul > li):not(:where(.not-prose,.not-prose *))::marker': {
-          color: 'var(--font-base)',
-        },
-        '.prose :where(details):not(:where(.not-prose,.not-prose *))': {
-          background: 'transparent',
-        },
       },
     }),
     presetWebFonts({
